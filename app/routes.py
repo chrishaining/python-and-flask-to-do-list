@@ -19,3 +19,11 @@ def create():
     db.session.commit()
     return redirect('/tasks')
 
+@app.route('/tasks/<int:task_id>', methods=['POST'])
+def update(task_id):
+    task=Task.query.get(task_id)
+    task.done=True
+    db.session.commit()
+    return redirect('/tasks')
+
+

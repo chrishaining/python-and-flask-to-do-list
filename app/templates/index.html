@@ -1,15 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<form action=“/tasks” method=“POST”>
-    <label for=“title”>Title:</label>
-    <input type=“text” name=“title” id=“title” />
-    <label for=“description”>Description:</label>
-    <textarea name=“description” id=“description” rows="4" cols=“80”></textarea>
+<form action="/tasks" method="POST">
+    <label for="title">Title:</label>
+    <input type="text" name="title" id="title" />
+    <label for="description">Description:</label>
+    <textarea name="description" id="description" rows="4" cols="80"></textarea>
     <input type="submit" value="Add Task">
   </form>
-  <h1> Hello, {{ user.username}}!</h1>
+  <h1>Hi, {{ user.name }}!</h1>
     {% for task in tasks %}
         <div>
             <p>
@@ -17,12 +16,16 @@
                 <b>{{ task.description }}</b>
                 {% if task.done %}
                 <span>&#9989;<span>
-                {% endif %}
-                {% if not task.done %}
-                <span>&#10060;<span>
+                {% else %}
+                <span>
+                    <form style="display:inline" action="/tasks/{{task.id}}" method="POST">
+                    <input type="submit" value="Mark as complete">
+                    </form>
+                </span>
                 {% endif %}
             </p>
         </div>
+
         {% endfor %}
 {% endblock %}
 
