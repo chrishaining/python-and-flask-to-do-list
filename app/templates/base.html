@@ -1,0 +1,15 @@
+<!-- in this file, block and endblock are Jinja commands, but 'content' is a banana -->
+
+<html>
+    <head>
+        <title> {{title}} - My To Do List</title>
+    </head>
+    <body>
+      <ul>
+          <li><a href="/">Home</a></li>
+          {% block content %} 
+          {% endblock %}
+      </ul>
+    </body>
+
+</html>
